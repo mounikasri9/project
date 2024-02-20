@@ -1,0 +1,76 @@
+
+<head>
+  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <script src="jquery.passwordstrength.js"></script>
+  <script  src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<div class="signup">
+    <div class="signup-connect">
+      <h1>Create An Account</h1>
+      <a href="#" class="btn btn-social btn-facebook">
+        <i class="fa fa-facebook" aria-hidden="true"></i>
+        Sign in with Facebook
+      </a>
+      <a href="#" class="btn btn-social btn-twitter">
+        <i class="fa fa-twitter" aria-hidden="true"></i>
+        Sign in with Twitter
+      </a>
+      <a href="#" class="btn btn-social btn-google">
+        <i class="fa fa-google-plus" aria-hidden="true"></i>
+        Sign in with Google
+      </a>
+      <a href="#" class="btn btn-social btn-github">
+        <i class="fa fa-github" aria-hidden="true"></i>
+        Sign in with Github
+      </a>
+    </div>
+    <div class="signup-classic">
+      <h2>Registration Form</h2>
+      <form class="form" onsubmit="return validateForm()">
+        <fieldset class="username">
+          <input type="text" id="username" placeholder="Username" required>
+        </fieldset>
+        <fieldset class="email">
+          <input type="email" id="email" placeholder="Email" required>
+        </fieldset>
+        <fieldset class="password">
+          <input type="password" id="password" placeholder="Password" oninput="checkPasswordStrength()" required>
+          <div id="password-strength"></div>
+        </fieldset>
+        <button type="submit" class="btn">Sign up</button>
+      </form>
+    </div>
+</div>
+<script>
+    function checkPasswordStrength() {
+        var passwordInput = document.getElementById("password");
+        var strengthDiv = document.getElementById("password-strength");
+        var password = passwordInput.value;
+
+        if (password.length === 0) {
+            strengthDiv.textContent = "";
+        } else if (password.length < 6) {
+            strengthDiv.textContent = "Weak password";
+        } else if (password.length < 10) {
+            strengthDiv.textContent = "Medium password";
+        } else {
+            strengthDiv.textContent = "Strong password";
+        }
+    }
+
+    function validateForm() {
+        var username = document.getElementById("username").value;
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+
+        if (username.trim() === "" || email.trim() === "" || password.trim() === "") {
+            alert("Please fill in all fields.");
+            return false;
+        }
+
+        return true;
+    }
+</script>
